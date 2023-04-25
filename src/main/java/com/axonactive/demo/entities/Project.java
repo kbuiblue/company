@@ -13,6 +13,6 @@ public class Project {
     @Column
     private String projectName;
     @ManyToOne
-    @JoinColumn(name = "departmentId")
-    private Long managedDepartment;
+    @JoinColumn(name = "managedDepartment")
+    private Department department;
 }

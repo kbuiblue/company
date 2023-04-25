@@ -16,6 +16,7 @@ public class Relatives {
     private String phoneNumber;
     @Column
     private String relationship;
-    @Column
-    private String employeeId;
+    @ManyToOne
+    @JoinColumn (name = "employeeId")
+    private Employee employeeId;
 }

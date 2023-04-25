@@ -13,6 +13,7 @@ public class Assignment {
     @ManyToOne
     @JoinColumn(name = "employeeId")
     private Employee employee;
-    @Column
-    private Long projectId;
+    @ManyToOne
+    @JoinColumn (name = "projectId")
+    private Project projectId;
 }

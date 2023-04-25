@@ -1,5 +1,7 @@
 package com.axonactive.demo.entities;
 
+import org.hibernate.mapping.Join;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +12,7 @@ public class DepartmentLocation {
     private Long id;
     @Column
     private String location;
-    @Column
-    private Long deptId;
-
+    @ManyToOne
+    @JoinColumn (name = "deptId")
+    private Department departmentId;
 }

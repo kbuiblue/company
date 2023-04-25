@@ -20,6 +20,7 @@ public class Employee {
     private String middleName;
     @Column
     private int salary;
-    @Column
-    private Long deptId;
+    @ManyToOne
+    @JoinColumn (name = "deptId")
+    private Department departmentId;
 }
