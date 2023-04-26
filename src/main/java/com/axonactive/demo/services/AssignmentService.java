@@ -16,7 +16,7 @@ public class AssignmentService {
         return assignmentRepository.findAll();
     }
 
-    public Assignment setNumberOfHours(AssignmentDTO assignmentDTO) {
+    public Assignment createAssignment(AssignmentDTO assignmentDTO) {
         Assignment assignment = new Assignment();
         assignment.setNumberOfHour(assignmentDTO.getNumberOfHour());
         return assignmentRepository.save(assignment);

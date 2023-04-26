@@ -7,19 +7,42 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class DepartmentService {
     private final DepartmentRepository departmentRepository;
 
-    public List<Department> getAllDeparment() {
+    public List<Department> getAllDepartment() {
         return departmentRepository.findAll();
     }
 
-    public Department setName(DepartmentDTO departmentDTO) {
+    public List<Department> getDepartmentById(Long deptId) {
+        return departmentRepository.getDepartmentByDeptId(deptId);
+    }
+
+    public Department createDepartment(DepartmentDTO departmentDTO) {
         Department department = new Department();
-        department.setDepartmentName(departmentDTO.getName());
+        department.setName(departmentDTO.getName());
+        department.setStartDate(departmentDTO.getStartDate());
         return departmentRepository.save(department);
     }
+    public Optional<Department> getDepartmentByName(String name){
+        Optional<Department> department = departmentRepository.getDepartmentByName(name);
+        return department;
+    }
+
+    public void deleteDepartment(Long deptId) {
+        departmentRepository.deleteById(deptId);
+    }
+
+    public Department updateDepartment(Long deptId, DepartmentDTO departmentDTO) {
+        Optional<Department> department = departmentRepository.findById(deptId);
+        Department updateDepartment = department.get();
+        updateDepartment.setName(departmentDTO.getName());
+        updateDepartment.setStartDate(departmentDTO.getStartDate());
+        return departmentRepository.save(updateDepartment);
+    }
+
 }

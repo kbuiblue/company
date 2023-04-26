@@ -17,7 +17,7 @@ public class DepartmentLocationService {
         return departmentLocationRepository.findAll();
     }
 
-    public DepartmentLocation setLocation(DepartmentLocationDTO departmentLocationDTO) {
+    public DepartmentLocation createDepartmentLocation(DepartmentLocationDTO departmentLocationDTO) {
         DepartmentLocation departmentLocation = new DepartmentLocation();
         departmentLocation.setLocation(departmentLocationDTO.getLocation());
         return departmentLocationRepository.save(departmentLocation);

@@ -29,5 +29,5 @@ public class Employee {
     private int salary;
     @ManyToOne
     @JoinColumn (name = "deptId")
-    private Department departmentId;
+    private Department id;
 }

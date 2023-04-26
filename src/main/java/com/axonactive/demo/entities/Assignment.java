@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Table (name = "assignment")
 public class Assignment {
     @Id
-    @GeneratedValue (strategy = GenerationType.SEQUENCE)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private int numberOfHour;

@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Table (name = "relatives")
 public class Relatives {
     @Id
-    @GeneratedValue (strategy = GenerationType.SEQUENCE)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private String fullName;
