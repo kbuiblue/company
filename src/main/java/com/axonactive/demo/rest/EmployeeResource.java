@@ -29,4 +29,16 @@ public class EmployeeResource implements EmployeeAPI {
     public ResponseEntity<List<Employee>> getEmployeeByEmployeeId(String employeeId) {
         return ResponseEntity.ok(employeeService.getEmployeeByEmployeeId(employeeId));
     }
+
+    @Override
+    public ResponseEntity<Void> deleteEmployeeByEmployeeId(String employeeId) {
+        employeeService.deleteEmployeeById(employeeId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Override
+    public ResponseEntity<Employee> updateDepartment(String employeeId, EmployeeDTO employeeDTO) {
+        Employee newEmployee =  employeeService.updateEmployee(employeeId, employeeDTO);
+        return ResponseEntity.ok().body(newEmployee);
+    }
 }

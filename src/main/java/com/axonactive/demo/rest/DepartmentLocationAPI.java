@@ -17,4 +17,11 @@ public interface DepartmentLocationAPI {
 
     @PostMapping
     ResponseEntity<DepartmentLocation> createDepartmentLocation(@RequestBody DepartmentLocationDTO departmentLocationDTO);
+
+    @DeleteMapping
+    ResponseEntity<Void> deleteDepartmentLocationById(@RequestParam("id") Long id);
+
+    @PutMapping("/{id}")
+    ResponseEntity<DepartmentLocation> updateDepartmentLocation(@PathVariable("id") Long id,
+                                                                @RequestBody DepartmentLocationDTO departmentLocationDTO);
 }

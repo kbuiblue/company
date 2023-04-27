@@ -17,4 +17,11 @@ public interface ProjectAPI {
 
     @PostMapping
     ResponseEntity<Project> createProject(@RequestBody ProjectDTO projectDTO);
+
+    @DeleteMapping
+    ResponseEntity<Void> deleteProjectByProjectId(@RequestParam("projectId") Long projectId);
+
+    @PutMapping("/{projectId}")
+    ResponseEntity<Project> updateProject(@PathVariable("projectId") Long projectId,
+                                          @RequestBody ProjectDTO projectDTO);
 }

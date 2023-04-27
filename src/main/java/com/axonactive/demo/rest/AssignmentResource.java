@@ -30,4 +30,16 @@ public class AssignmentResource implements AssignmentAPI{
     public ResponseEntity<List<Assignment>> getAssignmentById(Long id) {
         return ResponseEntity.ok(assignmentService.getAssignmentById(id));
     }
+
+    @Override
+    public ResponseEntity<Void> deleteAssignmentById(Long id) {
+        assignmentService.deleteAssignmentById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Override
+    public ResponseEntity<Assignment> updateAssignment(Long id, AssignmentDTO assignmentDTO) {
+        Assignment newAssignment = assignmentService.updateAssignment(id, assignmentDTO);
+        return ResponseEntity.ok().body(newAssignment);
+    }
 }

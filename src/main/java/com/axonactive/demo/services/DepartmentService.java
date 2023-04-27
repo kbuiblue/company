@@ -28,20 +28,20 @@ public class DepartmentService {
         department.setStartDate(departmentDTO.getStartDate());
         return departmentRepository.save(department);
     }
-    public Optional<Department> getDepartmentByName(String name){
+    public List<Department> getDepartmentByName(String name){
         return departmentRepository.getDepartmentByName(name);
     }
 
-    public void deleteDepartment(Long deptId) {
+    public void deleteDepartmentById(Long deptId) {
         departmentRepository.deleteById(deptId);
     }
 
     public Department updateDepartment(Long deptId, DepartmentDTO departmentDTO) {
         Optional<Department> department = departmentRepository.findById(deptId);
-        Department updateDepartment = department.get();
-        updateDepartment.setName(departmentDTO.getName());
-        updateDepartment.setStartDate(departmentDTO.getStartDate());
-        return departmentRepository.save(updateDepartment);
+        Department updatedDepartment = department.get();
+        updatedDepartment.setName(departmentDTO.getName());
+        updatedDepartment.setStartDate(departmentDTO.getStartDate());
+        return departmentRepository.save(updatedDepartment);
     }
 
 }

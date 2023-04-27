@@ -17,4 +17,11 @@ public interface EmployeeAPI {
 
     @PostMapping
     ResponseEntity<Employee> createEmployee(@RequestBody EmployeeDTO employeeDTO);
+
+    @DeleteMapping
+    ResponseEntity<Void> deleteEmployeeByEmployeeId(@RequestParam("employeeId") String employeeId);
+
+    @PutMapping("/{employeeId}")
+    ResponseEntity<Employee> updateDepartment(@PathVariable("employeeId")  String employeeId,
+                                              @RequestBody EmployeeDTO employeeDTO);
 }

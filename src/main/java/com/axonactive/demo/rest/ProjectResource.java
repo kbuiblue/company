@@ -1,6 +1,7 @@
 package com.axonactive.demo.rest;
 
 import com.axonactive.demo.dto.ProjectDTO;
+import com.axonactive.demo.entities.Department;
 import com.axonactive.demo.entities.Project;
 import com.axonactive.demo.services.ProjectService;
 import lombok.RequiredArgsConstructor;
@@ -30,5 +31,15 @@ public class ProjectResource implements ProjectAPI {
         return ResponseEntity.ok(projectService.getProjectByProjectId(projectId));
     }
 
+    @Override
+    public ResponseEntity<Void> deleteProjectByProjectId(Long projectId) {
+        projectService.deleteProjectByProjectId(projectId);
+        return ResponseEntity.noContent().build();
+    }
 
+    @Override
+    public ResponseEntity<Project> updateProject(Long projectId, ProjectDTO projectDTO) {
+        Project newProject =  projectService.updateProject(projectId, projectDTO);
+        return ResponseEntity.ok().body(newProject);
+    }
 }

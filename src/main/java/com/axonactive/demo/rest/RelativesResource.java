@@ -1,6 +1,7 @@
 package com.axonactive.demo.rest;
 
 import com.axonactive.demo.dto.RelativesDTO;
+import com.axonactive.demo.entities.Department;
 import com.axonactive.demo.entities.Relatives;
 import com.axonactive.demo.services.RelativesService;
 import lombok.RequiredArgsConstructor;
@@ -31,5 +32,15 @@ public class RelativesResource implements RelativesAPI{
         return ResponseEntity.created(URI.create("/api/relatives" + relatives.getId())).body(relatives);
     }
 
+    @Override
+    public ResponseEntity<Void> deleteRelativesById(Long id) {
+        relativesService.deleteRelativesById(id);
+        return ResponseEntity.noContent().build();
+    }
 
+    @Override
+    public ResponseEntity<Relatives> updateRelatives(Long id, RelativesDTO relativesDTO) {
+        Relatives newDepartment =  relativesService.updateRelatives(id, relativesDTO);
+        return ResponseEntity.ok().body(newDepartment);
+    }
 }

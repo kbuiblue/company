@@ -18,13 +18,13 @@ public interface DepartmentAPI {
     ResponseEntity<List<Department>> getDepartmentByDeptId(@RequestParam("deptId") Long deptId);
 
     @GetMapping("/names")
-    ResponseEntity<Optional<Department>> getDepartmentByName(@RequestParam("name") String name);
+    ResponseEntity<List<Department>> getDepartmentByName(@RequestParam("name") String name);
 
     @PostMapping
     ResponseEntity<Department> createDepartment(@RequestBody DepartmentDTO departmentDTO);
 
     @DeleteMapping
-    ResponseEntity<Void> deleteDepartment(@RequestParam("deptId") Long deptId);
+    ResponseEntity<Void> deleteDepartmentById(@RequestParam("deptId") Long deptId);
 
     @PutMapping("/{deptId}")
     ResponseEntity<Department> updateDepartment(@PathVariable("deptId") Long deptId,

@@ -17,4 +17,12 @@ public interface AssignmentAPI {
 
     @GetMapping("/assignment-ids")
     ResponseEntity<List<Assignment>> getAssignmentById(@RequestParam("id") Long id);
+
+    @DeleteMapping
+    ResponseEntity<Void> deleteAssignmentById(@RequestParam("id") Long id);
+
+    @PutMapping("/{id}")
+    ResponseEntity<Assignment> updateAssignment(@PathVariable("id") Long id,
+                                                @RequestBody AssignmentDTO assignmentDTO);
+
 }

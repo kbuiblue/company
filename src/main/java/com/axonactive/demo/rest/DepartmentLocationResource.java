@@ -1,6 +1,7 @@
 package com.axonactive.demo.rest;
 
 import com.axonactive.demo.dto.DepartmentLocationDTO;
+import com.axonactive.demo.entities.Department;
 import com.axonactive.demo.entities.DepartmentLocation;
 import com.axonactive.demo.services.DepartmentLocationService;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,15 @@ public class DepartmentLocationResource implements DepartmentLocationAPI {
         return ResponseEntity.ok(departmentLocationService.getDepartmentLocationById(id));
     }
 
+    @Override
+    public ResponseEntity<Void> deleteDepartmentLocationById(Long id) {
+        departmentLocationService.deleteDepartmentLocationById(id);
+        return ResponseEntity.noContent().build();
+    }
 
-
+    @Override
+    public ResponseEntity<DepartmentLocation> updateDepartmentLocation(Long id, DepartmentLocationDTO departmentLocationDTO) {
+        DepartmentLocation newDepartmentLocation =  departmentLocationService.updateDepartmentLocation(id, departmentLocationDTO);
+        return ResponseEntity.ok().body(newDepartmentLocation);
+    }
 }

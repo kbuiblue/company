@@ -28,7 +28,7 @@ public class DepartmentResource implements DepartmentAPI{
     }
 
     @Override
-    public ResponseEntity<Optional<Department>> getDepartmentByName(String name) {
+    public ResponseEntity<List<Department>> getDepartmentByName(String name) {
         return ResponseEntity.ok(departmentService.getDepartmentByName(name));
     }
 
@@ -37,15 +37,15 @@ public class DepartmentResource implements DepartmentAPI{
         return ResponseEntity.ok(departmentService.getDepartmentById(deptId));
     }
     @Override
-    public ResponseEntity<Void> deleteDepartment(Long deptId) {
-        departmentService.deleteDepartment(deptId);
+    public ResponseEntity<Void> deleteDepartmentById(Long deptId) {
+        departmentService.deleteDepartmentById(deptId);
         return ResponseEntity.noContent().build();
     }
 
     @Override
     public ResponseEntity<Department> updateDepartment(Long deptId, DepartmentDTO departmentDTO) {
-        Department result =  departmentService.updateDepartment(deptId, departmentDTO);
-        return ResponseEntity.ok().body(result);
+        Department newDepartment =  departmentService.updateDepartment(deptId, departmentDTO);
+        return ResponseEntity.ok().body(newDepartment);
     }
 
 }
