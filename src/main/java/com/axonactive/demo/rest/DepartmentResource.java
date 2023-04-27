@@ -24,7 +24,7 @@ public class DepartmentResource implements DepartmentAPI{
     @Override
     public ResponseEntity<Department> createDepartment(DepartmentDTO departmentDTO) {
         Department department = departmentService.createDepartment(departmentDTO);
-        return ResponseEntity.created(URI.create("/api/departments/" + department.getDeptId())).body(department);
+        return ResponseEntity.created(URI.create("/api/departments" + department.getDeptId())).body(department);
     }
 
     @Override

@@ -29,8 +29,7 @@ public class DepartmentService {
         return departmentRepository.save(department);
     }
     public Optional<Department> getDepartmentByName(String name){
-        Optional<Department> department = departmentRepository.getDepartmentByName(name);
-        return department;
+        return departmentRepository.getDepartmentByName(name);
     }
 
     public void deleteDepartment(Long deptId) {

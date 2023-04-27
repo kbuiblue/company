@@ -15,8 +15,10 @@ public class DepartmentLocation {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private String location;
+
     @ManyToOne
     @JoinColumn (name = "deptId")
     private Department locationId;

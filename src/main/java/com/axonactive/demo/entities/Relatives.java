@@ -18,7 +18,8 @@ public class Relatives {
     @Column
     private String fullName;
     @Column
-    private int gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
     @Column
     private String phoneNumber;
     @Column

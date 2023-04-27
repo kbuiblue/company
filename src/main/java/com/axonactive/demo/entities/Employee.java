@@ -15,18 +15,25 @@ import java.time.LocalDate;
 public class Employee {
     @Id
     private String employeeId;
+
     @Column
     private LocalDate dateOfBirth;
+
     @Column
     private String firstName;
-    @Column
-    private String gender;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
     @Column
     private String lastName;
+
     @Column
     private String middleName;
+
     @Column
     private int salary;
+
     @ManyToOne
     @JoinColumn (name = "deptId")
     private Department id;

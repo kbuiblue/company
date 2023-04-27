@@ -16,8 +16,10 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long deptId;
+
     @Column(name = "department_name", nullable = false, unique = true)
     private String name;
+
     @Column
     private LocalDate startDate;
 }

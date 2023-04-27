@@ -17,6 +17,9 @@ public class RelativesService {
         return relativesRepository.findAll();
     }
 
+    public List<Relatives> getRelativesById(Long id) {
+        return relativesRepository.getRelativesById(id);
+    }
     public Relatives createRelatives(RelativesDTO relativesDTO) {
         Relatives relatives = new Relatives();
         relatives.setFullName(relativesDTO.getFullName());

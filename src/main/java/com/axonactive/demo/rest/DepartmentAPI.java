@@ -14,7 +14,7 @@ public interface DepartmentAPI {
     @GetMapping
     ResponseEntity<List<Department>> getAllDepartment();
 
-    @GetMapping("/deptId")
+    @GetMapping("/dept-ids")
     ResponseEntity<List<Department>> getDepartmentByDeptId(@RequestParam("deptId") Long deptId);
 
     @GetMapping("/names")

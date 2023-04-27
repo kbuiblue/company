@@ -17,6 +17,9 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
+    public List<Project> getProjectByProjectId(Long projectId) {
+        return projectRepository.getProjectByProjectId(projectId);
+    }
     public Project createProject(ProjectDTO projectDTO) {
         Project project = new Project();
         project.setArea(projectDTO.getArea());

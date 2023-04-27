@@ -17,6 +17,9 @@ public class DepartmentLocationService {
         return departmentLocationRepository.findAll();
     }
 
+    public List<DepartmentLocation> getDepartmentLocationById(Long id) {
+        return departmentLocationRepository.getDepartmentLocationById(id);
+    }
     public DepartmentLocation createDepartmentLocation(DepartmentLocationDTO departmentLocationDTO) {
         DepartmentLocation departmentLocation = new DepartmentLocation();
         departmentLocation.setLocation(departmentLocationDTO.getLocation());

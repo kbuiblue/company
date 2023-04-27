@@ -15,10 +15,13 @@ public class Project {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long projectId;
+
     @Column
     private String area;
+
     @Column
     private String projectName;
+
     @ManyToOne
     @JoinColumn(name = "managedDepartment")
     private Department department;
