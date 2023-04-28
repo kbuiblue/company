@@ -1,12 +1,12 @@
 package com.axonactive.demo.services;
 
-import com.axonactive.demo.dto.DepartmentDTO;
 import com.axonactive.demo.dto.EmployeeDTO;
 import com.axonactive.demo.entities.Department;
 import com.axonactive.demo.entities.Employee;
-import com.axonactive.demo.entities.Gender;
+import com.axonactive.demo.repositories.DepartmentRepository;
 import com.axonactive.demo.repositories.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,12 +16,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
-
+    private final DepartmentRepository departmentRepository;
     public List<Employee> getAllEmployee() {
         return employeeRepository.findAll();
     }
 
-    public Employee createEmployee(EmployeeDTO employeeDTO) {
+    public Employee createEmployee(EmployeeDTO employeeDTO, Long deptId) {
+        Optional<Department> department = departmentRepository.findById(deptId);
+
         Employee employee = new Employee();
         employee.setEmployeeId(employeeDTO.getEmployeeId());
         employee.setGender(employeeDTO.getGender());
@@ -30,6 +32,11 @@ public class EmployeeService {
         employee.setLastName(employeeDTO.getLastName());
         employee.setDateOfBirth(employeeDTO.getDateOfBirth());
         employee.setSalary(employeeDTO.getSalary());
+
+//        if(department.isPresent()) {
+//            employee.setDeptId(department.get());
+//        }
+
         return employeeRepository.save(employee);
     }
 
@@ -43,6 +50,7 @@ public class EmployeeService {
     
     public Employee updateEmployee(String employeeId, EmployeeDTO employeeDTO) {
         Optional<Employee> employee = employeeRepository.findById(employeeId);
+
         Employee updatedEmployee = employee.get();
         updatedEmployee.setFirstName(employeeDTO.getFirstName());
         updatedEmployee.setMiddleName(employeeDTO.getMiddleName());
@@ -50,6 +58,7 @@ public class EmployeeService {
         updatedEmployee.setDateOfBirth(employeeDTO.getDateOfBirth());
         updatedEmployee.setGender(employeeDTO.getGender());
         updatedEmployee.setSalary(employeeDTO.getSalary());
+
         return employeeRepository.save(updatedEmployee);
     }
 }

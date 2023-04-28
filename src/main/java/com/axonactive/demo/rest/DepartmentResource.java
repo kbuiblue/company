@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,6 +36,21 @@ public class DepartmentResource implements DepartmentAPI{
     public ResponseEntity<List<Department>> getDepartmentByDeptId(Long deptId) {
         return ResponseEntity.ok(departmentService.getDepartmentById(deptId));
     }
+
+    @Override
+    public ResponseEntity<List<Department>> getDepartmentByNameAndDeptId(String name, Long deptId) {
+        return ResponseEntity.ok(departmentService.getDepartmentByNameAndDeptId(name, deptId));
+    }
+    @Override
+    public ResponseEntity<List<Department>> getDepartmentByNameOrDeptId(String name, Long deptId) {
+        return ResponseEntity.ok(departmentService.getDepartmentByNameOrDeptId(name, deptId));
+    }
+
+    @Override
+    public ResponseEntity<List<Department>> getDepartmentByStartDateAfter(LocalDate date) {
+        return ResponseEntity.ok(departmentService.getDepartmentByStartDateAfter(date));
+    }
+
     @Override
     public ResponseEntity<Void> deleteDepartmentById(Long deptId) {
         departmentService.deleteDepartmentById(deptId);
@@ -48,4 +63,13 @@ public class DepartmentResource implements DepartmentAPI{
         return ResponseEntity.ok().body(newDepartment);
     }
 
+    @Override
+    public ResponseEntity<List<Department>> getDepartmentByNameContaining(String contain) {
+        return ResponseEntity.ok(departmentService.getDepartmentByNameContaining(contain));
+    }
+
+    @Override
+    public ResponseEntity<List<Department>> getByOrderByNameAsc() {
+        return ResponseEntity.ok(departmentService.getByOrderByNameAsc());
+    }
 }

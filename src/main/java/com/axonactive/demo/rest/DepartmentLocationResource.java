@@ -1,7 +1,6 @@
 package com.axonactive.demo.rest;
 
 import com.axonactive.demo.dto.DepartmentLocationDTO;
-import com.axonactive.demo.entities.Department;
 import com.axonactive.demo.entities.DepartmentLocation;
 import com.axonactive.demo.services.DepartmentLocationService;
 import lombok.RequiredArgsConstructor;

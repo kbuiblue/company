@@ -12,11 +12,11 @@ public interface EmployeeAPI {
     @GetMapping
     ResponseEntity<List<Employee>> getAllEmployee();
 
-    @GetMapping("/employee-ids")
+    @GetMapping("/employeeIds")
     ResponseEntity<List<Employee>> getEmployeeByEmployeeId(@RequestParam("employeeId") String employeeId);
 
     @PostMapping
-    ResponseEntity<Employee> createEmployee(@RequestBody EmployeeDTO employeeDTO);
+    ResponseEntity<Employee> createEmployee(@RequestBody EmployeeDTO employeeDTO, @RequestParam Long deptId);
 
     @DeleteMapping
     ResponseEntity<Void> deleteEmployeeByEmployeeId(@RequestParam("employeeId") String employeeId);

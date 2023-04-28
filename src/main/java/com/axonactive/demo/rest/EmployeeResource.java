@@ -20,8 +20,8 @@ public class EmployeeResource implements EmployeeAPI {
     }
 
     @Override
-    public ResponseEntity<Employee> createEmployee(EmployeeDTO employeeDTO) {
-        Employee employee = employeeService.createEmployee(employeeDTO);
+    public ResponseEntity<Employee> createEmployee(EmployeeDTO employeeDTO, Long deptId) {
+        Employee employee = employeeService.createEmployee(employeeDTO, deptId);
         return ResponseEntity.created(URI.create("/api/employees" + employee.getEmployeeId())).body(employee);
     }
 
