@@ -3,11 +3,9 @@ package com.axonactive.demo.services;
 import com.axonactive.demo.dto.EmployeeDTO;
 import com.axonactive.demo.entities.Department;
 import com.axonactive.demo.entities.Employee;
-import com.axonactive.demo.entities.Relatives;
 import com.axonactive.demo.repositories.DepartmentRepository;
 import com.axonactive.demo.repositories.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

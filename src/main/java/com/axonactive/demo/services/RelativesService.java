@@ -1,15 +1,11 @@
 package com.axonactive.demo.services;
 
-import com.axonactive.demo.dto.ProjectDTO;
 import com.axonactive.demo.dto.RelativesDTO;
-import com.axonactive.demo.entities.Employee;
-import com.axonactive.demo.entities.Project;
 import com.axonactive.demo.entities.Relatives;
 import com.axonactive.demo.repositories.RelativesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
