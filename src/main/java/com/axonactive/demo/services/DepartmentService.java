@@ -7,8 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -63,6 +65,14 @@ public class DepartmentService {
 
     public List<Department> getByOrderByNameAsc() {
         return departmentRepository.getByOrderByNameAsc();
+    }
+
+    public List<String> getDepartmentStatisticsReport() {
+        List<Department> departmentList = getAllDepartment();
+
+        return departmentList.stream()
+                .map(department -> department.getName() + ", " + department.getStartDate())
+                .collect(Collectors.toList());
     }
 
 }
