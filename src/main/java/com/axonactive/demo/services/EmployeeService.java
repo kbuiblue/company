@@ -8,6 +8,7 @@ import com.axonactive.demo.repositories.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -60,7 +61,7 @@ public class EmployeeService {
 
         return employeeRepository.save(updatedEmployee);
     }
-
+    @Transactional
     public List<Employee> getAllEmployeeWithSameBirthMonth(Integer birthMonth) {
         List<Employee> employeeList = getAllEmployee();
 

@@ -10,10 +10,10 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table (name = "relatives")
+@Table(name = "relatives")
 public class Relatives {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private String fullName;
@@ -23,8 +23,10 @@ public class Relatives {
     @Column
     private String phoneNumber;
     @Column
-    private String relationship;
+    @Enumerated(EnumType.STRING)
+    private RelationshipPriority relationship;
+
     @ManyToOne
-    @JoinColumn (name = "employeeId")
+    @JoinColumn(name = "employeeId")
     private Employee employeeId;
 }

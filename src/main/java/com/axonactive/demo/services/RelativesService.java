@@ -1,6 +1,7 @@
 package com.axonactive.demo.services;
 
 import com.axonactive.demo.dto.RelativesDTO;
+import com.axonactive.demo.entities.RelationshipPriority;
 import com.axonactive.demo.entities.Relatives;
 import com.axonactive.demo.repositories.RelativesRepository;
 import lombok.RequiredArgsConstructor;
@@ -60,11 +61,11 @@ public class RelativesService {
         List<Relatives> relativesList = getAllRelatives();
 
         List<Relatives> filteredFathers = relativesList.stream()
-                .filter(relatives -> relatives.getRelationship().equals("father"))
+                .filter(relatives -> relatives.getRelationship().equals(RelationshipPriority.Father))
                 .collect(Collectors.toList());
 
         List<Relatives> filteredMothers = relativesList.stream()
-                .filter(relatives -> relatives.getRelationship().equals("mother"))
+                .filter(relatives -> relatives.getRelationship().equals(RelationshipPriority.Mother))
                 .collect(Collectors.toList());
 
         Map<String, List<Relatives>> employeeRelativesMap = relativesList.stream()
