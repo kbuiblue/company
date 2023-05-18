@@ -72,22 +72,26 @@ public class RelativesService {
                 .collect(Collectors.groupingBy(relatives -> relatives.getEmployeeId().getEmployeeId()));
 
         Relatives relative = null;
+        List<Relatives> relatives = null;
+
         for (String employeeId : employeeRelativesMap.keySet()) {
-            List<Relatives> relatives = employeeRelativesMap.get(employeeId);
+            relatives = employeeRelativesMap.get(employeeId);
+
             if (relatives.stream().anyMatch(filteredFathers::contains)) {
                 relative = relatives.stream()
-                        .filter(rel -> rel.getRelationship().equals("father"))
+                        .filter(rel -> rel.getRelationship().equals(RelationshipPriority.Father))
                         .findFirst()
                         .get();
             } else if (relatives.stream().anyMatch(filteredMothers::contains)) {
                 relative = relatives.stream()
-                        .filter(rel -> rel.getRelationship().equals("mother"))
+                        .filter(rel -> rel.getRelationship().equals(RelationshipPriority.Mother))
                         .findFirst()
                         .get();
-            } else {
-                relative = relatives.get(0);
             }
         }
+        if(relative == null)
+            relative = relatives.get(0);
+
         return relative;
     }
 }
