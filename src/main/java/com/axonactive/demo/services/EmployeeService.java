@@ -65,11 +65,9 @@ public class EmployeeService {
     public List<Employee> getAllEmployeeWithSameBirthMonth(Integer birthMonth) {
         List<Employee> employeeList = getAllEmployee();
 
-        List<Employee> filteredList = employeeList.stream()
+        return employeeList.stream()
                 .filter(employee -> employee.getDateOfBirth().getMonthValue() == birthMonth)
                 .collect(Collectors.toList());
-
-        return filteredList;
     }
 
 

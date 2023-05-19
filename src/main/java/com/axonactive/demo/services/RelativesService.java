@@ -7,8 +7,8 @@ import com.axonactive.demo.repositories.RelativesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -20,9 +20,11 @@ public class RelativesService {
     public List<Relatives> getAllRelatives() {
         return relativesRepository.findAll();
     }
+
     public List<Relatives> getRelativesById(Long id) {
         return relativesRepository.getRelativesById(id);
     }
+
     public Relatives createRelatives(RelativesDTO relativesDTO) {
         Relatives relatives = new Relatives();
         relatives.setFullName(relativesDTO.getFullName());
@@ -46,52 +48,36 @@ public class RelativesService {
         return relativesRepository.save(updatedRelatives);
     }
 
+    @Transactional
     public List<Relatives> getEmployeeRelatives(String employeeId) {
         List<Relatives> relativesList = getAllRelatives();
 
-        List<Relatives> filteredRelatives = relativesList.stream()
+        return relativesList.stream()
                 .filter(relatives -> relatives.getEmployeeId().getEmployeeId()
-                .equals(employeeId))
+                        .equals(employeeId))
                 .collect(Collectors.toList());
-
-        return filteredRelatives;
     }
 
-    public Relatives getEmployeeWithEmergencyContact() {
+    @Transactional
+    public Optional<Relatives> getEmployeeWithEmergencyContact() {
         List<Relatives> relativesList = getAllRelatives();
 
-        List<Relatives> filteredFathers = relativesList.stream()
-                .filter(relatives -> relatives.getRelationship().equals(RelationshipPriority.Father))
-                .collect(Collectors.toList());
+        Optional<Relatives> relative = relativesList.stream()
+                .filter(rel -> rel.getRelationship().equals(RelationshipPriority.Father))
+                .findFirst();
 
-        List<Relatives> filteredMothers = relativesList.stream()
-                .filter(relatives -> relatives.getRelationship().equals(RelationshipPriority.Mother))
-                .collect(Collectors.toList());
-
-        Map<String, List<Relatives>> employeeRelativesMap = relativesList.stream()
-                .collect(Collectors.groupingBy(relatives -> relatives.getEmployeeId().getEmployeeId()));
-
-        Relatives relative = null;
-        List<Relatives> relatives = null;
-
-        for (String employeeId : employeeRelativesMap.keySet()) {
-            relatives = employeeRelativesMap.get(employeeId);
-
-            if (relatives.stream().anyMatch(filteredFathers::contains)) {
-                relative = relatives.stream()
-                        .filter(rel -> rel.getRelationship().equals(RelationshipPriority.Father))
-                        .findFirst()
-                        .get();
-            } else if (relatives.stream().anyMatch(filteredMothers::contains)) {
-                relative = relatives.stream()
-                        .filter(rel -> rel.getRelationship().equals(RelationshipPriority.Mother))
-                        .findFirst()
-                        .get();
-            }
+        if (relative.isPresent()) {
+            return relative;
         }
-        if(relative == null)
-            relative = relatives.get(0);
 
-        return relative;
+        relative = relativesList.stream()
+                .filter(rel -> rel.getRelationship().equals(RelationshipPriority.Mother))
+                .findFirst();
+
+        if (relative.isPresent()) {
+            return relative;
+        }
+
+        return relativesList.stream().findFirst();
     }
 }

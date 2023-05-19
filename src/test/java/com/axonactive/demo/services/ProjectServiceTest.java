@@ -11,21 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-class RelativesServiceTest {
+class ProjectServiceTest {
 
     @Autowired
-    RelativesService relativesService;
+    ProjectService projectService;
 
-    // 3. Get employee and all their relatives
+    //5. List of departments and projects that they manage (-)
     @Test
-    void getEmployeeRelatives() {
-        String employeeId = "odiwellf";
-        relativesService.getEmployeeRelatives(employeeId).forEach(System.out::println);
-    }
-
-    // 4. Get an employee and 1 emergency contact relatives that have type is FATHER-> MOTHER-> Any
-    @Test
-    void getEmployeeWithEmergencyContact() {
-        System.out.println(relativesService.getEmployeeWithEmergencyContact());
+    void getAllProjectsManagedByEachDepartment() {
+        projectService.getAllProjectsManagedByEachDepartment().forEach(System.out::println);
     }
 }

@@ -13,6 +13,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 class EmployeeServiceTest {
     @Autowired
     private EmployeeService employeeService;
+
+    // 2. Get all employees that have birth months the same with input month
     @Test
     void getAllEmployeeWithSameBirthMonth() {
         Integer birthMonth = 1;
